@@ -13,7 +13,7 @@ TOKEN_filepath = "private/token.txt"
 TOKEN = open(TOKEN_filepath, "r").readlines()[0]
 
 mainChannel_filepath = "private/mainChannel.txt"
-mainChannel = open(mainChannel_filepath, "r").readlines()[0]
+mainChannel = int(open(mainChannel_filepath, "r").readlines()[0])
 
 @bot.event
 async def on_ready():
