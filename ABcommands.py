@@ -2,6 +2,7 @@ from discord.ext import commands
 import discord
 import os
 import json
+import accessStableDiffusion
 
 async def ping(ctx, userInput):
     response = ""
@@ -29,7 +30,7 @@ async def cmd_pong(ctx):
 
 async def handle_command(ctx, bot):
     userInput = ctx.message.content.lower()
-    print(f"{userInput.user}: {userInput}")
+    print(f"{ctx.author}: {userInput}")
     if ("ping" in userInput or "pong" in userInput) and userInput[0] == "!":
         print("ping or pong found!")
         try:
@@ -44,6 +45,14 @@ async def handle_command(ctx, bot):
             error_message= f"An error occurred while processing your command: \"{str(e)}\""
             await ctx.send(error_message)
 
-commandDict = {
+async def cmd_generate(ctx, bot):
+    member = ctx.author
+    if any(role.name.lower() == "admin".lower() for role in member.roles):
+        await ctx.send("Warning: This is still in alpha")
+        accessStableDiffusion.getSDiffImage()
+    else:
+        await ctx.send("Error: You are not an admin.")
 
+commandDict = {
+    "!generate": cmd_generate
 }
