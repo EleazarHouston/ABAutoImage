@@ -37,7 +37,6 @@ async def handle_command(ctx, bot):
         except Exception as e:
             error_message= f"An error occurred while processing your command: \"{str(e)}\""
             print(e)
-            #await ctx.send(error_message)
     if userInput in commandDict:
         try:
             await commandDict[userInput](ctx, bot)
