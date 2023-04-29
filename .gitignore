@@ -4,3 +4,4 @@ __pycache__
 private/
 private/mainChannel.txt
 private/token.txt
+generatedImages/
