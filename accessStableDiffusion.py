@@ -14,3 +14,32 @@ try:
         existsStableDiffusion = True
 except Exception as e:
     print(f"Exception: {e}")
+
+def getSDiffImage():
+    if existsStableDiffusion == False:
+        print("Stable Diffusion not found. Exiting...")
+        return False
+
+    result = []
+    imageCategories = json.load(open("imageCategories.json", "r"))
+    for category in imageCategories:
+        result.append(random.choice(imageCategories[category]))
+    prompt = ", ".join(result)
+    promptAddon = str(json.load(open("private/promptAddon.txt", "r"))[0])
+    payload = {
+        "prompt": prompt + promptAddon,
+        "steps": 30,
+        "sampler_index": "Euler a",
+        "restore_faces": True,
+        "eta": 0.75,
+        "cfg_scale": 15
+    }
+    print("Retrieving image...")
+    response = requests.post(url=f'http://127.0.0.1:7860/sdapi/v1/txt2img', json=payload)
+    r = response.json()
+    index = 1
+    for i in r['images']:
+        image = Image.open(io.BytesIO(base64.b64decode(i.split(",",1)[0])))
+        image.save(f'generatedImages/{prompt}.png')
+        print("Image saved")
+    return
