@@ -50,4 +50,5 @@ def getSDiffImage():
         print("Image saved")
     return
 
-#getSDiffImage()
+if __name__ == '__main__':
+    getSDiffImage()
