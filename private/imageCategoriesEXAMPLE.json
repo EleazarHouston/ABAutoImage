@@ -1,0 +1,5 @@
+{
+  "shape": ["square", "circle", "triangle"],
+  "color": ["red", "green", "blue", "purple", "yellow", "orange"],
+  "emptyness": ["", "empty"]
+}
