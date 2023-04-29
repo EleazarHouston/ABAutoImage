@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import os
 import json
+from ABcommands import handle_command
 
 intents = discord.Intents.default()
 intents.messages = True
@@ -26,6 +27,7 @@ async def on_message(message):
     if message.author == bot.user:
         return
     ctx = await bot.get_context(message)
+    await handle_command(ctx, bot)
 
 def runBot():
     bot.run(TOKEN)
