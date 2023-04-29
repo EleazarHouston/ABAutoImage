@@ -9,10 +9,10 @@ intents.message_content = True
 client = discord.Client(intents = intents)
 bot = commands.Bot(command_prefix = "!", intents=intents, case_insensitive=True)
 
-TOKEN_filepath = "constants/token.txt"
+TOKEN_filepath = "private/token.txt"
 TOKEN = open(TOKEN_filepath, "r").readlines()[0]
 
-mainChannel_filepath = "constants/mainChannel.txt"
+mainChannel_filepath = "private/mainChannel.txt"
 mainChannel = open(mainChannel_filepath, "r").readlines()[0]
 
 @bot.event
